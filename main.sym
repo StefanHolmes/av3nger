@@ -1,0 +1,2 @@
+.label init=$c000
+.label clear=$c023
