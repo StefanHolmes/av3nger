@@ -36,7 +36,7 @@ clear:  lda #$20
         bne !loop-
 
 // Clear hires screen
-
+// TODO: #1 Fix this to include the last 320 bytes (i.e. the last row)
         lda #$00
         ldx #$00
 !loop:  sta $2000,x
