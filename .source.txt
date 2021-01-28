@@ -1,12 +1,12 @@
 BasicUpstart2(init)
 
+
 #import "constants.asm"
 
     * = $C000 "Main"    // SYS 49152
 
 init:   lda #BLACK
         sta VIC_BORDER
-        lda #GREEN
         sta VIC_BACKGROUND
 
         // Set hires mode
@@ -21,7 +21,7 @@ init:   lda #BLACK
         jsr clear
         rts
 
-// Character (now colour) screen clear
+// Character (now colour) fast screen clear
 clear:  lda #$20
         ldx #(1024/8)
 !loop:  sta $03ff,x
