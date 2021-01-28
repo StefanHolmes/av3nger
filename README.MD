@@ -4,7 +4,7 @@
 
 First-time C64 6510 assembly project to recreate a version of Space Invaders faithful to the original arcade game.
 
-Neither 'official' C64 Space Invaders port (there were two versions, both called Avenger) were perfect. Oddly, the first version, released in 1982, was the most faithful, but lacked subtle nuances that an experienced player would have noticed.
+~~Neither~~ None of the 'official' C64 Space Invaders ports (there were ~~two~~ three versions, ~~both~~ all called Avenger) were perfect. Oddly, the first two versions (practically identical) released in 1982 were the most faithful, but lacked subtle nuances that an experienced player would have noticed.
 
 I'm not an experienced player. I'm taking all information from http://www.computerarcheology.com/Arcade/SpaceInvaders/ (https://github.com/topherCantrell/computerarcheology)
 
