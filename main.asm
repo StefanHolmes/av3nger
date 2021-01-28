@@ -36,6 +36,7 @@ clear:  lda #$20
         bne !loop-
 
 // Clear hires screen
+
         lda #$00
         ldx #$00
 !loop:  sta $2000,x
