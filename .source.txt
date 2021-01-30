@@ -38,7 +38,7 @@ clear:  lda #$20
 // Clear hires screen
 // TODO: #1 Fix this to include the last 320 bytes (i.e. the last row)
         lda #$00
-        ldx #$00
+        tax
 !loop:  sta $2000,x
         sta $2000+($100*1),x
         sta $2000+($100*2),x
