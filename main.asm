@@ -4,6 +4,7 @@ BasicUpstart2(init)
 #import "constants.asm"
 #import "includes.asm"
 
+        // TODO: The challenge here is there's no dynamic loading. This ends up making the PRG 47KB.
     * = $C000 "Main"    // SYS 49152
 
 init:   lda #BLACK
