@@ -1,3 +1,4 @@
 .label init=$c000
 .label clear=$c021
+.label enemyData=$2160
 .label fontData=$2000

@@ -16,7 +16,10 @@
          $080c,$080d,0,62,5,62,9
       </Block>
       <Block name="Font graphics">
-         $2000,$215f,3,4,11,4,15
+         $2000,$215f,3,5,11,5,15
+      </Block>
+      <Block name="Enemy graphics">
+         $2160,$22df,3,8,12,8,16
       </Block>
       <Block name="Main">
          $c000,$c001,1,9,9,9,11
@@ -49,7 +52,8 @@
    </Segment>
 
    <Labels values="SEGMENT,ADDRESS,NAME,START,END,FILE_IDX,LINE1,COL1,LINE2,COL2">
-      Default,$2000,fontData,3,4,1,4,9
+      Default,$2000,fontData,3,5,1,5,9
+      Default,$2160,enemyData,3,8,1,8,10
       Default,$c000,init,1,9,1,9,5
       Default,$c021,clear,1,26,1,26,6
       Default,$080c,upstartEnd,0,61,1,61,11
