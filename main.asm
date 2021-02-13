@@ -1,11 +1,8 @@
 BasicUpstart2(init)
 
-
 #import "constants.asm"
-#import "includes.asm"
 
-        // TODO: The challenge here is there's no dynamic loading. This ends up making the PRG 47KB.
-    * = $C000 "Main"    // SYS 49152
+ //   * = $4000 "Main"
 
 init:   lda #BLACK
         sta VIC_BORDER
@@ -13,17 +10,15 @@ init:   lda #BLACK
 
         // Set hires mode
         lda #%00111000
-        ora VIC_CONTROL_1
+        ora VIC_CONTROL_1       // Not needed?
         sta VIC_CONTROL_1
         lda #%00000011
         ora MEMORY_MAP
         sta MEMORY_MAP
         lda #%00011000
         sta MEMORY_CONTROL
-        jsr clear
-        rts
 
-// Character (now colour) fast screen clear
+        // Character (now colour) fast screen clear
 clear:  lda #$20
         ldx #(1024/8)
 !loop:  sta $03ff,x
@@ -37,8 +32,8 @@ clear:  lda #$20
         dex
         bne !loop-
 
-// Clear hires screen
-// TODO: #1 Fix this to include the last 320 bytes (i.e. the last row)
+        // Clear hires screen
+        // TODO: #1 Fix this to include the last 320 bytes (i.e. the last row)
 //         lda #$00
 //         tax
 // !loop:  sta $2000,x
@@ -75,3 +70,5 @@ clear:  lda #$20
 //         dex
 //         bne !loop-
         rts
+
+#import "graphics.asm"
