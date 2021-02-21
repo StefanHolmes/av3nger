@@ -1,4 +1,5 @@
 *.vs
 *.sym
+*.prg
 *.dbg
 .source.txt
