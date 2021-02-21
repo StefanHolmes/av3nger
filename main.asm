@@ -22,8 +22,8 @@ init:   lda #BLACK
 
         // Character (now colour) fast screen clear
 fullclear:
-        lda #$20
-        ldx #(1024/8)
+        lda #$01
+        ldx #(1000/8)
 !loop:  sta $03ff,x
         sta $047c,x
         sta $04f9,x
@@ -35,9 +35,10 @@ fullclear:
         dex
         bne !loop-
 
-        // Clear hires screen. Looks like it takes 4 frames.
+        // Clear hires screen. Looks like it takes ~4 frames.
         txa     // X register is zero because of the previous loop.
-        
+        sei
+
 !loop:  sta $2000,x
         sta $2000+($100*1),x
         sta $2000+($100*2),x
@@ -73,12 +74,13 @@ fullclear:
         dex
         bne !loop-
 
-        // Now clear the last 64 bytes
+        // Now clear the remaining 64 bytes
         ldx #63
 !loop:  sta $3f00,x
         dex
         bne !loop-
         
+        cli
         rts
 
 #import "graphics.asm"
