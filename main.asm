@@ -11,9 +11,10 @@ init:   lda #BLACK
         // Set hires mode
         lda #%00111000
         sta VIC_CONTROL_1
-        
+
         // Hires screen @ $2000 (8192)
         lda #%00000011
+   // The 'ora' doesn't seem to be needed (VICE 3.5 at least. Not tested on real hardware)
    //     ora MEMORY_MAP
         sta MEMORY_MAP
         lda #%00011000
