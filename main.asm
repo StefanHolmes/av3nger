@@ -22,7 +22,7 @@ init:   lda #BLACK
 
         // Character (now colour) fast screen clear
 fullclear:
-        lda #$01
+        lda #$10
         ldx #(1000/8)
 !loop:  sta $03ff,x
         sta $047c,x
@@ -37,7 +37,7 @@ fullclear:
 
         // Clear hires screen. Looks like it takes ~4 frames.
         txa     // X register is zero because of the previous loop.
-        sei
+        sei     // Turn off interrupts
 
 !loop:  sta $2000,x
         sta $2000+($100*1),x
