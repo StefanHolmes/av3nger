@@ -14,8 +14,6 @@ init:   lda #BLACK
 
         // Hires screen @ $2000 (8192)
         lda #%00000011
-   // The 'ora' doesn't seem to be needed (VICE 3.5 at least. Not tested on real hardware)
-   //     ora MEMORY_MAP
         sta MEMORY_MAP
         lda #%00011000
         sta MEMORY_CONTROL
@@ -83,4 +81,8 @@ fullclear:
         cli
         rts
 
+print:  
+
 #import "graphics.asm"
+
+testtext: 
