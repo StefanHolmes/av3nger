@@ -13,7 +13,7 @@ init:   lda #BLACK
         sta VIC_CONTROL_1
 
         // Hires screen @ $2000 (8192)
-        lda #%00000011
+        lda #%10010011
         sta MEMORY_MAP
         lda #%00011000
         sta MEMORY_CONTROL

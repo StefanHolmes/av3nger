@@ -52,7 +52,7 @@
 //
 // %7654____ * 1024 + Current VIC bank = Location of screen character RAM
 // %____321_ * 2048 + Current VIC bank = Start address of character set
-// %_______0 Not used
+// %_______0 Not used (always 1)
 //
 // ----------------------------------------------------------------------------
 //
@@ -66,8 +66,59 @@
 
 
 
+//==============================================================================
 .const VIC_IRQ          = $D019
+//
+// Read: -
+//
+// %7_______ One or more interrupt events have occurred and have not been ack'd
+// %_654____ Not used
+// %____3___ Light pen signal arrived
+// %_____2__ Sprite/sprite collision
+// %______1_ Sprite/background collision
+// %_______0 Current raster line = raster line to generate interrupt at
+// 
+// ----------------------------------------------------------------------------
+//
+// Write: -
+//
+// %7654____ Not used
+// %____3___ Ack light pen interrupt
+// %_____2__ Ack sprite/sprite collision interrupt
+// %______1_ Ack sprite/background collision interrupt
+// %_______0 Ack raster interrupt
+//
+//==============================================================================
+
+
+
+//==============================================================================
 .const VIC_IRQEN        = $D01A
+//
+// %7654____ Not used
+// %____3___ Light pen interrupt enabled
+// %_____2__ Sprite/sprite collision interrupt enabled
+// %______1_ Sprite/backgroun collision interrupt enabled
+// %_______0 Raster interrupt enabled
+//
+//==============================================================================
+
+
+//==============================================================================
 .const VIC_BORDER       = $D020
 .const VIC_BACKGROUND   = $D021
+//
+// %7654____ Always 1111
+// %____3210 Colour
+//
+//==============================================================================
+
+
+
+//==============================================================================
 .const MEMORY_MAP       = $DD00
+//
+// %765432__ Port A, serial bus access control bits
+// %______10 VIC bank location. 11=$000 | 10=$4000 | 01=$8000 | 00=$C000
+// 
+//==============================================================================
