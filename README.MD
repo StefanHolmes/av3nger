@@ -16,3 +16,5 @@ I'm not an experienced player. I'm taking all information from http://www.comput
     - Extension: Kick Assembler (C64) by Paul Hocker: https://marketplace.visualstudio.com/items?itemName=paulhocker.kick-assembler-vscode-ext
 - VICE emulator V3.5: https://vice-emu.sourceforge.io/
 - C64 65XE NES Debugger V0.64.58.2: https://sourceforge.net/projects/c64-debugger/
+- paint.net 4.2.15: https://www.getpaint.net/
+- Excel 365
