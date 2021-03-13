@@ -19,8 +19,9 @@ init:   lda #BLACK
         sta MEMORY_CONTROL
 
         // Character (now colour) fast screen clear
+        // TODO: #2 This needs to be changed to add tint zones
 fullclear:
-        lda #$10
+        lda #(BLACK+16*GREEN)
         ldx #(1000/8)
 !loop:  sta $03ff,x
         sta $047c,x
@@ -81,12 +82,42 @@ fullclear:
         dex
         bne !loop-
         
+// TODO: #3 This isn't part of the attract mode. Move it to be called when player starts
+drawBottomLine:
+        lda #$ff
+        sta $3e07,x
+        sta $3e07+$08,x
+        sta $3e07+$10,x
+        sta $3e07+$18,x
+        sta $3e07+$20,x
+        sta $3e07+$28,x
+        sta $3e07+$30,x
+        sta $3e07+$38,x
+        sta $3e07+$40,x
+        sta $3e07+$48,x
+        sta $3e07+$50,x
+        sta $3e07+$58,x
+        sta $3e07+$60,x
+        sta $3e07+$68,x
+        sta $3e07+$70,x
+        sta $3e07+$78,x
+        sta $3e07+$80,x
+        sta $3e07+$88,x
+        sta $3e07+$90,x
+        sta $3e07+$98,x
+        sta $3e07+$a0,x
+        sta $3e07+$a8,x
+        sta $3e07+$b0,x
+        sta $3e07+$b8,x
+        sta $3e07+$c0,x
+        sta $3e07+$c8,x
+        sta $3e07+$d0,x
+        sta $3e07+$d8,x
+                
         cli     // Turn interrupts back on
         rts
 
-print:  
-
 #import "graphics.asm"
 
-testtext:
+text:
 #import "text.asm"
