@@ -2,7 +2,7 @@ BasicUpstart2(init)
 
 #import "constants.asm"
 
- //   * = $4000 "Main"
+        * = * "Main"
 
 init:   lda #BLACK
         sta VIC_BORDER
@@ -81,11 +81,12 @@ fullclear:
         dex
         bne !loop-
         
-        cli
+        cli     // Turn interrupts back on
         rts
 
 print:  
 
 #import "graphics.asm"
 
-testtext: 
+testtext:
+#import "text.asm"
