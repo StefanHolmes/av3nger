@@ -73,8 +73,11 @@ fullclear:
         bne !loop-
 
         // Now clear the remaining 64 bytes
-        ldx #63
+        ldx #15
 !loop:  sta $3f00,x
+        sta $3f0f,x
+        sta $3f1f,x
+        sta $3f2f,x
         dex
         bne !loop-
         
