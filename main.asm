@@ -1,6 +1,7 @@
 BasicUpstart2(init)
 
-#import "constants.asm"
+#import "global-constants.asm"
+#import "av3nger-constants.asm"
 
         * = * "Main"
 
@@ -40,29 +41,36 @@ fullclear:
 
 !loop:
 .for(var i=$100*30;-1<i;i=i-$100) {
-        sta $2000+i,x
+        sta AV3_SCREEN+i,x
 }
         dex
         bne !loop-
 
         // Now clear the remaining 64 bytes
         ldx #15
-!loop:  sta $3f00,x
-        sta $3f0f,x
-        sta $3f1f,x
-        sta $3f2f,x
+!loop:  sta AV3_SCREEN+$1f00,x
+        sta AV3_SCREEN+$1f0f,x
+        sta AV3_SCREEN+$1f1f,x
+        sta AV3_SCREEN+$1f2f,x
         dex
         bne !loop-
         
 // TODO: #3 This isn't part of the attract mode. Move it to be called when player starts
 drawBottomLine:
         lda #$ff
-.for(var i=$d8;-1<i;i=i-8) {
-        sta $3e07+i,x
+
+        .for(var i=$d8;-1<i;i=i-8) {
+        sta AV3_SCREEN+$1e07+i,x
         }
 
         cli     // Turn interrupts back on
         rts
+
+
+// drawScoreAdvanceTable:
+//         lda score_advance_table
+
+
 
 #import "graphics.asm"
 
