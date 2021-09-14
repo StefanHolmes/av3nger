@@ -5,23 +5,7 @@ BasicUpstart2(init)
 
         * = * "Main"
 
-init:   lda #BLACK
-        sta VIC_BORDER
-        sta VIC_BACKGROUND
-
-        // Set hires mode
-        lda #%00111000
-        sta VIC_CONTROL_1
-
-        // Hires screen @ $2000 (8192)
-        lda #%10010011
-        sta MEMORY_MAP
-        lda #%00011000
-        sta MEMORY_CONTROL
-
-        // Character (now colour) fast screen clear
-        // TODO: #2 This needs to be changed to add tint zones
-fullclear:
+init:   // Fast charmode screen clear
         lda #(BLACK+16*GREEN)
         ldx #(1000/8)
 !loop:  sta $03ff,x
@@ -34,6 +18,10 @@ fullclear:
         sta $076a,x
         dex
         bne !loop-
+
+        lda #BLACK
+        sta VIC_BORDER
+        sta VIC_BACKGROUND
 
         // Clear hires screen. Looks like it takes ~4 frames.
         txa     // X register is zero because of the previous loop.
@@ -54,6 +42,18 @@ fullclear:
         sta AV3_SCREEN+$1f2f,x
         dex
         bne !loop-
+
+
+        // Hires screen @ $2000 (8192)
+        lda #%10010011
+        sta MEMORY_MAP
+        lda #%00011000
+        sta MEMORY_CONTROL
+
+        // Set hires mode
+        lda #%00111000
+        sta VIC_CONTROL_1
+
         
 // TODO: #3 This isn't part of the attract mode. Move it to be called when player starts
 drawBottomLine:
@@ -69,7 +69,6 @@ drawBottomLine:
 
 // drawScoreAdvanceTable:
 //         lda score_advance_table
-
 
 
 #import "graphics.asm"
