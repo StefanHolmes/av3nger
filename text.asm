@@ -2,7 +2,7 @@
 
 score_advance_table:
    //     *  S  C  O  R  E  _  A  D  V  A  N  C  E  _  T  A  B  L  E  *  
-   .byte !end+ - score_advance_table
+   .byte !end+ - score_advance_table   // Length of string
    .byte 40,18,02,14,17,04,38,00,03,21,00,13,02,04,38,19,00,01,11,04,40
 !end:
 
@@ -25,3 +25,6 @@ alien_score_table:
    //     =  1  0  _  P  O  I  N  T  S
    .byte 39,27,26,38,15,14,08,13,19,18
 
+space_invaders:
+   //     S  P  A  C  E  _  I  N  V  A  D  E  R  S
+   .byte 18,15,00,02,04,38,08,13,21,00,03,04,17,18
