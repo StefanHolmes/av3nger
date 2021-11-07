@@ -10,7 +10,7 @@ I'm not an experienced player. I'm taking all information from http://www.comput
 
 ## Tools used
 
-- CharPad Pro  V2.85: https://www.subchristsoftware.com/charpadpro/index.htm
+- CharPad Pro V2.85: https://www.subchristsoftware.com/charpadpro/index.htm
 - Kick Assembler V5.17: http://theweb.dk/KickAssembler/
 - VSCode: https://code.visualstudio.com/
     - Extension: Kick Assembler (C64) by Paul Hocker: https://marketplace.visualstudio.com/items?itemName=paulhocker.kick-assembler-vscode-ext
