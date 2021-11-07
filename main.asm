@@ -6,7 +6,7 @@ BasicUpstart2(init)
         * = * "Main"
 
 init:   // Fast charmode screen clear
-        lda #(BLACK+16*GREEN)
+        lda #(BLACK+16*WHITE)
         ldx #(1000/8)
 !loop:  sta $03ff,x
         sta $047c,x
@@ -44,15 +44,42 @@ init:   // Fast charmode screen clear
         bne !loop-
 
 
+        //=====================================================================
         // Hires screen @ $2000 (8192)
-        lda #%10010011
+        //
+        //   %______10 VIC bank location. 11=$0000 | 10=$4000 | 01=$8000 | 00=$C000
+        lda #%00000011
         sta MEMORY_MAP
+        //
+        //   %7654____ * 1024 + Current VIC bank = Location of colour RAM
+        //   %____3___ * 8192 + Current VIC bank = Start address of bitmap
+        //   %_____210 Not used
         lda #%00011000
         sta MEMORY_CONTROL
+        //=====================================================================
+
 
         // Set hires mode
+        //   %__5_____ Bitmap / text (1 = bitmap, 0 = character mode)
+        //   %___4____ Screen visible (1 = visible, 0 = blank)
+        //   %____3___ 24 / 25 rows (1 = 25 rows, 0 = 24 rows)
         lda #%00111000
         sta VIC_CONTROL_1
+
+
+        // --------------------------------------------------------------------
+        // Create lookup tables for text rendering
+        //
+        // Inspiration from https://codebase64.org/doku.php?id=base:dots_and_plots
+        //
+        // Create a table of memory locations to use as character position lookups
+        // into the bitmapped display. Position resolution = 8x8, so the table will
+        // be small enough to fit into the same bank as the display.
+
+        
+
+        // --------------------------------------- End of lookup table creation
+        // Only runs once
 
         
 // TODO: #3 This isn't part of the attract mode. Move it to be called when player starts
@@ -62,6 +89,7 @@ drawBottomLine:
         .for(var i=$d8;-1<i;i=i-8) {
         sta AV3_SCREEN+$1e07+i,x
         }
+// ---
 
         cli     // Turn interrupts back on
         rts
