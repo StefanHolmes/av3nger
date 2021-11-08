@@ -77,18 +77,16 @@ init:   lda #BLACK
         tax
         sta $00fb       // Normally unused zero-page addresses
         sta $00fc
-        sta $00fd
-        sta $00fe
 
 build_x_table:
         clc
         lda $00fb
         adc #08
         sta $00fb
-        bcc add16done
+        bcc add16_done
         inc $00fc
 
-add16done:
+add16_done:
         lda $00fb
         sta AV3_SCREEN+8001,x
         lda $00fc
@@ -98,7 +96,7 @@ add16done:
         cpx #78
         bne build_x_table
 
-        // --------------------------------------- End of lookup table creation
+         // --------------------------------------- End of lookup table creation
         // Only runs once
 
         
@@ -119,7 +117,5 @@ drawBottomLine:
 // drawScoreAdvanceTable:
 //         lda score_advance_table
 
-
 #import "graphics.asm"
-
 #import "text.asm"
