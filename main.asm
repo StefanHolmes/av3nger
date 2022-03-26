@@ -96,7 +96,7 @@ add16_done:
         cpx #78
         bne build_x_table
 
-         // --------------------------------------- End of lookup table creation
+        // --------------------------------------- End of lookup table creation
         // Only runs once
 
         
